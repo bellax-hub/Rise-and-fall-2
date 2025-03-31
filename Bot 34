@@ -1,0 +1,230 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" is_dbot="true" collection="false">
+  <variables>
+    <variable type="" id="ema50" islocal="false" iscloud="false">ema50</variable>
+    <variable type="" id="ema10" islocal="false" iscloud="false">ema10</variable>
+    <variable type="" id="ema5" islocal="false" iscloud="false">ema5</variable>
+  </variables>
+  <block type="trade_definition" id="i]`fLRZ]?mshi{9kS+fg" x="0" y="0">
+    <statement name="TRADE_OPTIONS">
+      <block type="trade_definition_market" id="w2tV#|N1PqTM)~5-6|An" deletable="false" movable="false">
+        <field name="MARKET_LIST">synthetic_index</field>
+        <field name="SUBMARKET_LIST">random_index</field>
+        <field name="SYMBOL_LIST">R_100</field>
+        <next>
+          <block type="trade_definition_tradetype" id="4BIa?F@i2*Mlrd:{G,SF" deletable="false" movable="false">
+            <field name="TRADETYPECAT_LIST">callput</field>
+            <field name="TRADETYPE_LIST">callput</field>
+            <next>
+              <block type="trade_definition_contracttype" id="kujUv]]-mtF@Na3q/.(g" deletable="false" movable="false">
+                <field name="TYPE_LIST">both</field>
+                <next>
+                  <block type="trade_definition_candleinterval" id="[DsSG;O7*n`fK%ed;aj5" deletable="false" movable="false">
+                    <field name="CANDLEINTERVAL_LIST">60</field>
+                    <next>
+                      <block type="trade_definition_restartbuysell" id="]RX]Y0mfW-(HKGjkY]ly" deletable="false" movable="false">
+                        <field name="TIME_MACHINE_ENABLED">FALSE</field>
+                        <next>
+                          <block type="trade_definition_restartonerror" id="il/#yt1#I,KbD:6BQx?#" deletable="false" movable="false">
+                            <field name="RESTARTONERROR">TRUE</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="ema50">
+        <field name="VAR" id="ema50" variabletype="">ema50</field>
+        <value name="VALUE">
+          <block type="ema_statement" id="ema50Block">
+            <field name="VARIABLE" id="ema50" variabletype="">ema50</field>
+            <statement name="STATEMENT">
+              <block type="input_list" id="ema50InputList">
+                <value name="INPUT_LIST">
+                  <block type="ticks" id="ema50Ticks"></block>
+                </value>
+                <next>
+                  <block type="period" id="ema50Period">
+                    <value name="PERIOD">
+                      <shadow type="math_number" id="ema50PeriodValue">
+                        <field name="NUM">50</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="ema10">
+            <field name="VAR" id="ema10" variabletype="">ema10</field>
+            <value name="VALUE">
+              <block type="ema_statement" id="ema10Block">
+                <field name="VARIABLE" id="ema10" variabletype="">ema10</field>
+                <statement name="STATEMENT">
+                  <block type="input_list" id="ema10InputList">
+                    <value name="INPUT_LIST">
+                      <block type="ticks" id="ema10Ticks"></block>
+                    </value>
+                    <next>
+                      <block type="period" id="ema10Period">
+                        <value name="PERIOD">
+                          <shadow type="math_number" id="ema10PeriodValue">
+                            <field name="NUM">10</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="ema5">
+                <field name="VAR" id="ema5" variabletype="">ema5</field>
+                <value name="VALUE">
+                  <block type="ema_statement" id="ema5Block">
+                    <field name="VARIABLE" id="ema5" variabletype="">ema5</field>
+                    <statement name="STATEMENT">
+                      <block type="input_list" id="ema5InputList">
+                        <value name="INPUT_LIST">
+                          <block type="ticks" id="ema5Ticks"></block>
+                        </value>
+                        <next>
+                          <block type="period" id="ema5Period">
+                            <value name="PERIOD">
+                              <shadow type="math_number" id="ema5PeriodValue">
+                                <field name="NUM">5</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="trade_definition_tradeoptions" id="8=uN{72G(CSbw2LN=h?0">
+        <mutation has_first_barrier="false" has_second_barrier="false" has_prediction="false"></mutation>
+        <field name="DURATIONTYPE_LIST">t</field>
+        <value name="DURATION">
+          <shadow type="math_number" id="k`7z}jrl^[X.o1UBEw#m">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="AMOUNT">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+          <block type="procedures_callreturn" id="JKIgKdNnmR8J;^];~[kp">
+            <mutation name="Martingale Trade Amount"></mutation>
+            <data>x3TA)`V~gtD7?rqNj[.9</data>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="before_purchase" id="zwrLZ1+W,@?1ZL59xNk2" collapsed="true" x="0" y="696">
+    <statement name="BEFOREPURCHASE_STACK">
+      <block type="controls_if" id="QW~H^(MhwaGHF2[u/D|1">
+        <value name="IF0">
+          <block type="logic_operation" id="FuE!U3H+]-8)d,o+M;k`">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_compare" id="|whObKGA6Md!o~!%8zh(">
+                <field name="OP">LTE</field>
+                <value name="A">
+                  <block type="variables_get" id="ema5Value">
+                    <field name="VAR" id="ema5" variabletype="">ema5</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="variables_get" id="ema10Value">
+                    <field name="VAR" id="ema10" variabletype="">ema10</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="ema10Value2">
+                <field name="OP">LTE</field>
+                <value name="A">
+                  <block type="variables_get" id="ema10Value3">
+                    <field name="VAR" id="ema10" variabletype="">ema10</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="variables_get" id="ema50Value">
+                    <field name="VAR" id="ema50" variabletype="">ema50</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="purchase" id="purchaseCall">
+            <field name="PURCHASE_LIST">CALL</field>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_if" id="Rt!:#2aRq|5HJ]qngzEl">
+            <value name="IF0">
+              <block type="logic_operation" id="L2,RgXDS+SLu?|7z[]?l">
+                <field name="OP">AND</field>
+                <value name="A">
+                  <block type="logic_compare" id="FD#V^wac;|Mr78.X|FRq">
+                    <field name="OP">GTE</field>
+                    <value name="A">
+                      <block type="variables_get" id="ema5Value2">
+                        <field name="VAR" id="ema5" variabletype="">ema5</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="variables_get" id="ema10Value4">
+                        <field name="VAR" id="ema10" variabletype="">ema10</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_compare" id="ema10Value5">
+                    <field name="OP">GTE</field>
+                    <value name="A">
+                      <block type="variables_get" id="ema10Value6">
+                        <field name="VAR" id="ema10" variabletype="">ema10</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="variables_get" id="ema50Value2">
+                        <field name="VAR" id="ema50" variabletype="">ema50</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="purchase" id="purchasePut">
+                <field name="PURCHASE_LIST">PUT</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
